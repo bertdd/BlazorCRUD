@@ -1,0 +1,130 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<PageTitle>CRUD in Blazor</PageTitle>
+
+<table border="0">
+  <tr>
+    <td>Id</td>
+    <td><input type="text" readonly @bind="student.Id" /></td>
+  </tr>
+  <tr>
+    <td>Naam</td>
+    <td><input type="text" @bind="student.Name" /></td>
+  </tr>
+</table>
+
+<button type="button" @onclick="Clear">Nieuw</button>
+<button type="button" @onclick="Save">Opslaan</button>
+<button type="button" @onclick="Delete">Verwijder</button>
+
+<hr />
+
+@foreach (var student in students)
+{
+  <div @onclick="() => Edit(student.Id)">@student</div>
+}
+
+@Message
+
+@code
+{
+
+  Student student = new();
+
+  Database? database = new("localhost", 3306, "test", "root");
+
+  List<Student> students { get; set; } = [];
+
+  string? Message;
+
+  async Task GetStudents()
+  {
+    if (database != null)
+    {
+      try
+      {
+        students = await database!.GetStudents();
+      }
+      catch (Exception ex)
+      {
+        Message = ex.Message;
+      }
+    }
+  }
+
+  void Clear()
+  {
+    try
+    {
+      student = new();
+    }
+    catch (Exception ex)
+    {
+      Message = ex.Message;
+    }
+  }
+
+  async Task Delete()
+  {
+    if (database != null)
+    {
+      try
+      {
+        if (student.Id != 0)
+        {
+          await database.Delete(student);
+          await GetStudents();
+          student = new();
+        }
+      }
+      catch (Exception ex)
+      {
+        Message = ex.Message;
+      }
+    }
+  }
+
+  async Task Edit(int id)
+  {
+    if (database != null)
+    {
+      try
+      {
+        student = await database.GetStudent(id);
+      }
+      catch (Exception ex)
+      {
+        Message = ex.Message;
+      }
+    }
+  }
+
+  protected override async Task OnInitializedAsync()
+  {
+    try
+    {
+      await GetStudents();
+    }
+    catch (Exception ex)
+    {
+      Message = ex.Message;
+    }
+  }
+
+  async Task Save()
+  {
+    if (database != null)
+    {
+      try
+      {
+        await database.Save(student);
+        await GetStudents();
+      }
+      catch (Exception ex)
+      {
+        Message = ex.Message;
+      }
+    }
+  }
+}
