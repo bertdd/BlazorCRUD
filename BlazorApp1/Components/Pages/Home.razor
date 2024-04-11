@@ -15,6 +15,7 @@
 </table>
 
 <button type="button" @onclick="Clear">Nieuw</button>
+<button type="button" @onclick="() => GetStudents(student.Name)">Zoek</button>
 <button type="button" @onclick="Save">Opslaan</button>
 <button type="button" @onclick="Delete">Verwijder</button>
 
@@ -38,13 +39,13 @@
 
   string? Message;
 
-  async Task GetStudents()
+  async Task GetStudents(string? name = null)
   {
     if (database != null)
     {
       try
       {
-        students = await database!.GetStudents();
+        students = await database!.GetStudents(name);
       }
       catch (Exception ex)
       {

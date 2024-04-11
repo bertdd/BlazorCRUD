@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp1", "BlazorApp1\BlazorApp1.csproj", "{A40D6111-74E7-45C9-A049-526BFD5B134B}"
 EndProject
+Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "PHPWebProject1", "PHPWebProject1\PHPWebProject1.phpproj", "{3C64181A-E14A-42E8-BAF5-E5119D080CC4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A40D6111-74E7-45C9-A049-526BFD5B134B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A40D6111-74E7-45C9-A049-526BFD5B134B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A40D6111-74E7-45C9-A049-526BFD5B134B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C64181A-E14A-42E8-BAF5-E5119D080CC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C64181A-E14A-42E8-BAF5-E5119D080CC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C64181A-E14A-42E8-BAF5-E5119D080CC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C64181A-E14A-42E8-BAF5-E5119D080CC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
